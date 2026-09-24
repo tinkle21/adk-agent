@@ -1,0 +1,19 @@
+# Investment property scan - 2026-09-24 23:43 UTC
+
+Criteria: asking price within ±5% of the property.com.au estimate, estimate confidence high, and estimated rent at least 100% of the repayment on a 80% loan at 6.10% over 30 years.
+
+Listings checked: 0 · Matches: 0 · Near misses: 0
+
+## Matches
+
+None this scan.
+
+## Near misses (fail one rule by a small margin)
+
+None.
+
+## Problems during the scan
+
+- https://www.realestate.com.au/buy/property-house-townhouse-unit+apartment-with-2-bedrooms-between-300000-750000-in-ipswich,+qld+4305/list-1?activeSort=list-date&includeSurrounding=false returned HTTP 429. The site is blocking automated requests; set FETCH_URL_TEMPLATE to use a scraping provider.
+
+_Estimates are automated (PropTrack via property.com.au) and exclude strata, rates, insurance, management fees and vacancy. Not financial advice - verify before acting._
