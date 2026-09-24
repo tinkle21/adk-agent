@@ -1,0 +1,71 @@
+name: Property scan (every 2 days)
+
+on:
+  schedule:
+    # Cron can't express "every 2 days" cleanly (*/2 on day-of-month runs on
+    # both the 31st and the 1st), so this triggers daily at 21:00 UTC
+    # (7am AEST) and the first step skips every other day.
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Run even if today is an off day"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: property-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every other day only
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ $(( $(date -u +%s) / 86400 % 2 )) -eq 0 ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Off day - skipping."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install
+        if: steps.gate.outputs.run == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Scan
+        if: steps.gate.outputs.run == 'true'
+        env:
+          FETCH_URL_TEMPLATE: ${{ secrets.FETCH_URL_TEMPLATE }}
+        run: |
+          python -m property_agent.scan
+          cat reports/latest.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save reports and state
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          git config user.name "property-scan-bot"
+          git config user.email "property-scan-bot@users.noreply.github.com"
+          git add reports data
+          git diff --cached --quiet || git commit -m "Property scan $(date -u +%F)"
+          git push
+
+      - uses: actions/upload-artifact@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          name: property-scan-report
+          path: reports/

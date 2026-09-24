@@ -1,0 +1,44 @@
+# Investment property scan settings.
+# Every value here can be changed without touching code.
+
+[search]
+# realestate.com.au location slugs, written the way they appear in search URLs
+# (suburb, state postcode). One search per entry.
+locations = [
+  "ipswich, qld 4305",
+  "logan central, qld 4114",
+  "toowoomba, qld 4350",
+  "elizabeth, sa 5112",
+  "armadale, wa 6112",
+  "mandurah, wa 6210",
+]
+property_types = ["house", "townhouse", "unit+apartment"]
+min_price = 300000
+max_price = 750000
+min_bedrooms = 2
+# Result pages fetched per location (about 25 listings per page).
+max_pages = 2
+
+[criteria]
+# 1) Asking price must be within this fraction of the property.com.au estimate.
+#    0.05 = asking price between 95% and 105% of the estimate.
+price_tolerance = 0.05
+# 2) property.com.au estimate confidence levels that are accepted.
+accepted_confidence = ["high"]
+# 3) Rent must cover the loan repayment.
+deposit_pct = 0.20            # 20% deposit -> 80% loan
+interest_rate = 0.061         # 6.1% p.a.
+loan_term_years = 30
+# Monthly rent / monthly repayment must be at least this. 1.0 = rent fully
+# covers the repayment.
+min_rent_coverage = 1.0
+# How to read a price range like "$600,000 - $650,000": "low", "mid" or "high".
+range_price_basis = "high"
+# Listings that are within this much of passing a rule are reported as
+# "near misses" so you can still look at them.
+near_miss_margin = 0.05
+
+[fetch]
+# Seconds between requests. Be polite; both sites rate-limit aggressively.
+delay_seconds = 3.0
+timeout_seconds = 60

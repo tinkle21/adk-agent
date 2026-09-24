@@ -1,0 +1,21 @@
+{
+  "listings": [
+    {"listing_id": "1001", "address": "12 Example St, Ipswich QLD 4305", "url": "https://www.realestate.com.au/1001",
+     "price_text": "Offers over $480,000", "suburb": "Ipswich", "state": "QLD", "postcode": "4305", "property_type": "House", "bedrooms": 3},
+    {"listing_id": "1002", "address": "4/88 Sample Rd, Logan Central QLD 4114", "url": "https://www.realestate.com.au/1002",
+     "price_text": "$420,000 - $440,000", "suburb": "Logan Central", "state": "QLD", "postcode": "4114", "property_type": "Townhouse", "bedrooms": 3},
+    {"listing_id": "1003", "address": "7 Demo Ave, Toowoomba QLD 4350", "url": "https://www.realestate.com.au/1003",
+     "price_text": "$690,000", "suburb": "Toowoomba", "state": "QLD", "postcode": "4350", "property_type": "House", "bedrooms": 4},
+    {"listing_id": "1004", "address": "21 Test Cres, Elizabeth SA 5112", "url": "https://www.realestate.com.au/1004",
+     "price_text": "Contact Agent", "suburb": "Elizabeth", "state": "SA", "postcode": "5112", "property_type": "House", "bedrooms": 3},
+    {"listing_id": "1005", "address": "3 Mock Pl, Armadale WA 6112", "url": "https://www.realestate.com.au/1005",
+     "price_text": "$455,000", "suburb": "Armadale", "state": "WA", "postcode": "6112", "property_type": "House", "bedrooms": 3}
+  ],
+  "valuations": {
+    "1001": {"estimated_value": 490000, "confidence": "high", "value_low": 450000, "value_high": 530000, "weekly_rent_estimate": 580},
+    "1002": {"estimated_value": 430000, "confidence": "high", "weekly_rent_estimate": 540},
+    "1003": {"estimated_value": 700000, "confidence": "high", "weekly_rent_estimate": 620},
+    "1004": {"estimated_value": 420000, "confidence": "high", "weekly_rent_estimate": 520},
+    "1005": {"estimated_value": 470000, "confidence": "medium", "weekly_rent_estimate": 600}
+  }
+}
