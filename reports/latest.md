@@ -1,4 +1,4 @@
-# Investment property scan - 2026-10-22 23:50 UTC
+# Investment property scan - 2026-10-24 22:50 UTC
 
 Criteria: asking price within ±5% of the property.com.au estimate, estimate confidence high, and estimated rent at least 100% of the repayment on a 80% loan at 6.10% over 30 years.
 
